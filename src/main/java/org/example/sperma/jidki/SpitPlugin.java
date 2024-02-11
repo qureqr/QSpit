@@ -72,10 +72,11 @@ public class SpitPlugin extends JavaPlugin implements CommandExecutor {
                 }
             }
             .runTaskTimer(this, 0, 1);
-            
-            // Оповещаем игрока о вызове плевка ламы
+
             player.sendMessage("харчёк полетел");
         } else if (label.equalsIgnoreCase("fart")) {
+
+
             Location playerLocation = player.getLocation();
             player.getWorld().spawnParticle(Particle.EXPLOSION_NORMAL, playerLocation, 100, 0.5, 0.5, 0.5, 0.1);
             player.getWorld().playSound(playerLocation, Sound.ENTITY_GENERIC_EXPLODE, 1.0f, 1.0f);
