@@ -76,12 +76,12 @@ public class SpitPlugin extends JavaPlugin implements CommandExecutor {
             Location playerLocation = player.getLocation();
             World world = player.getWorld();
 
-            Location spawnLocation = playerLocation.clone().subtract(0, 1.5, 0);
+            Location spawnLocation = playerLocation.clone().subtract(0, -0.3, 0);
 
             ShulkerBullet shulkerBullet = (ShulkerBullet) world.spawnEntity(spawnLocation, EntityType.SHULKER_BULLET);
             shulkerBullet.setShooter(player);
 
-            Vector direction = player.getLocation().getDirection().multiply(-2); // Отрицательный множитель для направления назад
+            Vector direction = player.getLocation().getDirection().multiply(-1); // Отрицательный множитель для направления назад
             shulkerBullet.setVelocity(direction);
 
             player.sendMessage("уфф пернул знатно");
