@@ -1,0 +1,11 @@
+name: SpitPlugin
+version: '${project.version}'
+main: org.example.sperma.jidki.SpitPlugin
+api-version: '1.19'
+commands:
+  spit:
+    description: Spawns a llama spit
+    usage: /spit
+  fart:
+    description: Fart
+    usage: /fart
