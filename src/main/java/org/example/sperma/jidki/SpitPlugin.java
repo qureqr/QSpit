@@ -10,6 +10,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
@@ -70,7 +72,7 @@ public class SpitPlugin extends JavaPlugin implements CommandExecutor {
                     }
                 }
             }
-            .runTaskTimer(this, 0, 1);
+                    .runTaskTimer(this, 0, 1);
 
             player.sendMessage("харчёк полетел");
         }else if (label.equalsIgnoreCase("fart")) {
@@ -94,15 +96,20 @@ public class SpitPlugin extends JavaPlugin implements CommandExecutor {
                 Location targetLocation = target.getLocation();
                 double distance = playerLocation.distance(targetLocation);
 
-                if (true) {
+                if (true) { // Проверяем, находится ли цель в пределах определенного расстояния от игрока
                     target.sendMessage("В вас попал пёрдеж от " + player.getName() + "!");
                     player.sendMessage("Вы попали пёрдежом в " + target.getName() + "!");
-                    shulkerBullet.setGravity(false);
+
+                    // Очищаем эффекты у цели
+                    for (PotionEffect effect : target.getActivePotionEffects()) {
+                        if (effect.getType().equals(PotionEffectType.LEVITATION)) {
+                            target.removePotionEffect(effect.getType());
+                        }
+                    }
                 }
             }
         }
         return true;
-
 
     }
 
