@@ -21,8 +21,6 @@ public class SpitPlugin extends JavaPlugin implements CommandExecutor {
     public void onEnable() {
         // Регистрация команды и исполнителя команды
         this.getCommand("spit").setExecutor(this);
-        this.getCommand("fart").setExecutor(this);
-
     }
 
     @Override
@@ -75,39 +73,6 @@ public class SpitPlugin extends JavaPlugin implements CommandExecutor {
                     .runTaskTimer(this, 0, 1);
 
             player.sendMessage("харчёк полетел");
-        }else if (label.equalsIgnoreCase("fart")) {
-            Location playerLocation = player.getLocation();
-            World world = player.getWorld();
-            Location spawnLocation = playerLocation.clone().subtract(0, -0.3, 0);
-
-            ShulkerBullet shulkerBullet = (ShulkerBullet) world.spawnEntity(spawnLocation, EntityType.SHULKER_BULLET);
-            shulkerBullet.setShooter(player);
-
-            Vector direction = player.getLocation().getDirection().multiply(-1);
-            shulkerBullet.setVelocity(direction);
-            shulkerBullet.setGravity(false);
-            player.sendMessage("уфф пёрнул знатно");
-
-            for (Player target : Bukkit.getServer().getOnlinePlayers()) {
-                if (target.equals(player)) {
-                    continue;
-                }
-
-                Location targetLocation = target.getLocation();
-                double distance = playerLocation.distance(targetLocation);
-
-                if (true) { // Проверяем, находится ли цель в пределах определенного расстояния от игрока
-                    target.sendMessage("В вас попал пёрдеж от " + player.getName() + "!");
-                    player.sendMessage("Вы попали пёрдежом в " + target.getName() + "!");
-
-                    // Очищаем эффекты у цели
-                    for (PotionEffect effect : target.getActivePotionEffects()) {
-                        if (effect.getType().equals(PotionEffectType.LEVITATION)) {
-                            target.removePotionEffect(effect.getType());
-                        }
-                    }
-                }
-            }
         }
         return true;
 
