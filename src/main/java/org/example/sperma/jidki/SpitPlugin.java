@@ -59,11 +59,10 @@ public class SpitPlugin extends JavaPlugin implements CommandExecutor {
                         if (spitLocation.getWorld() != targetLocation.getWorld()) continue;
 
                         double distanceSquared = spitLocation.distanceSquared(targetLocation);
-                        if (distanceSquared < 2.5) {
+                        if (distanceSquared < 2) {
                             target.damage(0.1);
                             target.sendMessage("В вас попал харчёк от " + player.getName() + "!");
                             player.sendMessage("Вы попали харчком в " + target.getName() + "!");
-                            llamaSpit.remove();
                             cancel();
                             break;
                         }
